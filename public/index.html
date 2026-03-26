@@ -359,6 +359,19 @@
       margin: 0;
     }
 
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 769px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -461,13 +474,17 @@
       #about {
         padding: 72px 20px !important;
       }
+
+      .contact-fields-row {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div id="page-architect">
+  <div id="page-architect" style="overflow-x:hidden;">
 
     <!-- ═══ NAVIGATION ═══ -->
     <nav class="nav-glass" style="position:relative;">
@@ -759,7 +776,7 @@
     <!-- ═══ ABOUT ═══ -->
     <section id="about" style="padding:100px 24px;">
       <div class="about-grid"
-        style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+        style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:40px;align-items:start;">
         <div>
           <p class="section-label">About Me</p>
           <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 24px;">Architect.
@@ -920,7 +937,8 @@
 
         <div class="card" style="padding:40px;text-align:left;">
           <form onsubmit="handleContactSubmit(event)">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div class="contact-fields-row"
+              style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
               <div>
                 <label
                   style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Full
