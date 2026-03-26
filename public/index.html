@@ -384,6 +384,7 @@
       flex-direction: column;
       gap: 5px;
     }
+
     .nav-hamburger span {
       display: block;
       width: 20px;
@@ -392,14 +393,29 @@
       border-radius: 2px;
       transition: transform 0.25s, opacity 0.25s;
     }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
 
     /* Mobile breakpoint */
     @media (max-width: 768px) {
-      .nav-links-desktop { display: none !important; }
-      .nav-hamburger { display: flex !important; }
+      .nav-links-desktop {
+        display: none !important;
+      }
+
+      .nav-hamburger {
+        display: flex !important;
+      }
+
       #nav-mobile-menu.open {
         display: flex !important;
         flex-direction: column;
@@ -407,24 +423,44 @@
         top: 68px;
         left: 0;
         right: 0;
-        background: rgba(10,15,30,0.97);
+        background: rgba(10, 15, 30, 0.97);
         border-bottom: 1px solid var(--border);
         padding: 20px 24px;
         gap: 16px;
         z-index: 99;
       }
+
       .hero-inner {
         grid-template-columns: 1fr !important;
         gap: 40px !important;
       }
+
       .hero-stats {
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 12px !important;
         min-width: unset !important;
       }
-      .hero-stats .card { padding: 18px 10px !important; }
-      .hero-stats .stat-highlight { font-size: 2.2rem !important; }
-      #hero { padding: 88px 20px 60px !important; }
+
+      .hero-stats .card {
+        padding: 18px 10px !important;
+      }
+
+      .hero-stats .stat-highlight {
+        font-size: 2.2rem !important;
+      }
+
+      #hero {
+        padding: 88px 20px 60px !important;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+
+      #about {
+        padding: 72px 20px !important;
+      }
     }
   </style>
 </head>
@@ -722,7 +758,7 @@
 
     <!-- ═══ ABOUT ═══ -->
     <section id="about" style="padding:100px 24px;">
-      <div
+      <div class="about-grid"
         style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
         <div>
           <p class="section-label">About Me</p>
