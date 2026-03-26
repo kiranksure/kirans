@@ -372,492 +372,568 @@
       background: var(--surface2);
       border-radius: 3px;
     }
+
+    /* Hamburger button */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 10px;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile breakpoint */
+    @media (max-width: 768px) {
+      .nav-links-desktop { display: none !important; }
+      .nav-hamburger { display: flex !important; }
+      #nav-mobile-menu.open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(10,15,30,0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 24px;
+        gap: 16px;
+        z-index: 99;
+      }
+      .hero-inner {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+        min-width: unset !important;
+      }
+      .hero-stats .card { padding: 18px 10px !important; }
+      .hero-stats .stat-highlight { font-size: 2.2rem !important; }
+      #hero { padding: 88px 20px 60px !important; }
+    }
   </style>
 </head>
 
 <body>
 
-<div id="page-architect">
+  <div id="page-architect">
 
-  <!-- ═══ NAVIGATION ═══ -->
-  <nav class="nav-glass">
-    <div
-      style="max-width:1200px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;">
-      <a href="#hero" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
-        <span
-          style="width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;color:#071310;">KS</span>
-        <span style="font-weight:700;font-size:1rem;color:var(--text);">kirans.net</span>
-      </a>
-      <div style="display:flex;gap:32px;align-items:center;">
-        <a href="#about" class="nav-link" style="display:none" id="nav-desktop">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#contact" class="btn-primary" style="padding:9px 20px;font-size:0.82rem;">Hire Me</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ═══ HERO ═══ -->
-  <section id="hero" class="hero-grid"
-    style="min-height:100vh;display:flex;align-items:center;padding:100px 24px 80px;">
-    <div
-      style="max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;">
-      <div>
-        <div style="margin-bottom:24px;">
-          <span class="badge-chip pulse">
-            <span style="width:7px;height:7px;background:var(--accent);border-radius:50%;"></span>
-            Available for consulting
-          </span>
-        </div>
-        <p class="mono" style="color:var(--muted);font-size:0.9rem;margin-bottom:8px;">
-          // 16+ years of engineering excellence
-        </p>
-        <h1 style="font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;line-height:1.1;margin:0 0 8px;">
-          <span class="title-gradient">Kiran S</span>
-        </h1>
-        <h2 style="font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;color:#94a3b8;margin:0 0 28px;line-height:1.4;">
-          Software Architect &nbsp;·&nbsp; IT Consultant &nbsp;·&nbsp; Entrepreneur
-        </h2>
-        <p style="font-size:1.05rem;color:#94a3b8;line-height:1.8;max-width:560px;margin-bottom:40px;">
-          I design and build scalable, production-grade systems across mobile, backend, and cloud platforms.
-          From startups to enterprises — I architect solutions that last.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;">
-          <a href="#contact" class="btn-primary">
-            <i class="fa fa-paper-plane"></i> Get In Touch
-          </a>
-          <a href="#services" class="btn-outline">
-            <i class="fa fa-layer-group"></i> View Services
-          </a>
-        </div>
-        <!-- Quick tech badges -->
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;">
-          <span class="skill-pill"><span class="dot"></span>Laravel</span>
-          <span class="skill-pill"><span class="dot"></span>Android</span>
-          <span class="skill-pill"><span class="dot"></span>Node.js</span>
-          <span class="skill-pill"><span class="dot"></span>Flutter</span>
-          <span class="skill-pill"><span class="dot"></span>TypeScript</span>
-        </div>
-      </div>
-      <!-- Stats block -->
-      <div style="display:grid;grid-template-columns:1fr;gap:20px;min-width:200px;">
-        <div class="card" style="padding:28px 24px;text-align:center;">
-          <div class="stat-highlight">16<span style="color:var(--accent);font-size:2rem;">+</span></div>
-          <div style="color:var(--muted);font-size:0.82rem;margin-top:4px;font-weight:500;">Years Experience</div>
-        </div>
-        <div class="card" style="padding:28px 24px;text-align:center;">
-          <div class="stat-highlight">50<span style="color:var(--accent);font-size:2rem;">+</span></div>
-          <div style="color:var(--muted);font-size:0.82rem;margin-top:4px;font-weight:500;">Projects Delivered</div>
-        </div>
-        <div class="card" style="padding:28px 24px;text-align:center;">
-          <div class="stat-highlight">5</div>
-          <div style="color:var(--muted);font-size:0.82rem;margin-top:4px;font-weight:500;">Core Platforms</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="glow-divider"></div>
-
-  <!-- ═══ SKILLS ═══ -->
-  <section id="skills" style="padding:100px 24px;">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div style="margin-bottom:56px;">
-        <p class="section-label">Technical Expertise</p>
-        <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Tech Stack &amp; Skills</h2>
-        <p style="color:var(--muted);max-width:500px;line-height:1.7;">Across 16 years I've worked deep and wide —
-          full-stack, mobile-first, cloud-native.</p>
-      </div>
-
-      <!-- Primary skills with proficiency -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-bottom:48px;">
-
-        <div class="card" style="padding:28px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <i class="fab fa-php" style="color:#8892BF;font-size:1.4rem;"></i>
-              <span style="font-weight:600;">Laravel / PHP</span>
-            </div>
-            <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
-          </div>
-          <div class="progress-bar-bg" style="margin-bottom:12px;">
-            <div class="progress-bar-fill" style="width:96%;"></div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">REST APIs</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Eloquent ORM</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Queues</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Microservices</span>
-          </div>
-        </div>
-
-        <div class="card" style="padding:28px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <i class="fab fa-android" style="color:#3DDC84;font-size:1.4rem;"></i>
-              <span style="font-weight:600;">Android (Java &amp; Kotlin)</span>
-            </div>
-            <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
-          </div>
-          <div class="progress-bar-bg" style="margin-bottom:12px;">
-            <div class="progress-bar-fill" style="width:94%;"></div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Jetpack Compose</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">MVVM</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Coroutines</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Room / Retrofit</span>
-          </div>
-        </div>
-
-        <div class="card" style="padding:28px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <i class="fab fa-node-js" style="color:#68A063;font-size:1.4rem;"></i>
-              <span style="font-weight:600;">Node.js / TypeScript</span>
-            </div>
-            <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
-          </div>
-          <div class="progress-bar-bg" style="margin-bottom:12px;">
-            <div class="progress-bar-fill" style="width:92%;"></div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Express / Fastify</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">NestJS</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">WebSockets</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">GraphQL</span>
-          </div>
-        </div>
-
-        <div class="card" style="padding:28px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <i class="fas fa-mobile-alt" style="color:#54C5F8;font-size:1.4rem;"></i>
-              <span style="font-weight:600;">Flutter / Dart</span>
-            </div>
-            <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Advanced</span>
-          </div>
-          <div class="progress-bar-bg" style="margin-bottom:12px;">
-            <div class="progress-bar-fill" style="width:88%;"></div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Bloc / Riverpod</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Cross-platform</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">iOS &amp; Android</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Flutter Web</span>
-          </div>
-        </div>
-
-        <div class="card" style="padding:28px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <i class="fas fa-cloud" style="color:#6366f1;font-size:1.4rem;"></i>
-              <span style="font-weight:600;">Cloud &amp; DevOps</span>
-            </div>
-            <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Advanced</span>
-          </div>
-          <div class="progress-bar-bg" style="margin-bottom:12px;">
-            <div class="progress-bar-fill" style="width:85%;"></div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">AWS / GCP</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Docker</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">CI/CD</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Firebase</span>
-          </div>
-        </div>
-
-        <div class="card" style="padding:28px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <i class="fas fa-database" style="color:#f59e0b;font-size:1.4rem;"></i>
-              <span style="font-weight:600;">Databases &amp; Architecture</span>
-            </div>
-            <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
-          </div>
-          <div class="progress-bar-bg" style="margin-bottom:12px;">
-            <div class="progress-bar-fill" style="width:93%;"></div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">MySQL / PostgreSQL</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">MongoDB</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Redis</span>
-            <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Microservices</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="glow-divider"></div>
-
-  <!-- ═══ SERVICES ═══ -->
-  <section id="services" style="padding:100px 24px;background:var(--surface);">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div style="margin-bottom:56px;text-align:center;">
-        <p class="section-label">What I Do</p>
-        <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Services</h2>
-        <p style="color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7;">End-to-end expertise from
-          architectural design to production deployment.</p>
-      </div>
-      <div class="services-grid">
-
-        <div class="card" style="padding:32px;">
-          <div class="icon-wrap"><i class="fas fa-sitemap"></i></div>
-          <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">System Architecture</h3>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Design of scalable microservices,
-            event-driven systems, and enterprise-grade backend architectures tailored to your business domain.</p>
-        </div>
-
-        <div class="card" style="padding:32px;">
-          <div class="icon-wrap"><i class="fab fa-android"></i></div>
-          <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Mobile App Development</h3>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Native Android (Java/Kotlin) and
-            cross-platform Flutter apps — performant, beautiful, and production-ready for millions of users.</p>
-        </div>
-
-        <div class="card" style="padding:32px;">
-          <div class="icon-wrap"><i class="fas fa-server"></i></div>
-          <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Backend &amp; API Development</h3>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">RESTful and GraphQL APIs built with
-            Laravel and Node.js/TypeScript. Secure, high-performance, and built with developer experience in mind.</p>
-        </div>
-
-        <div class="card" style="padding:32px;">
-          <div class="icon-wrap"><i class="fas fa-lightbulb"></i></div>
-          <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">IT Consulting</h3>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Strategic technology audits, team
-            structure guidance, tech stack selection, and roadmap planning for growing startups and enterprises.</p>
-        </div>
-
-        <div class="card" style="padding:32px;">
-          <div class="icon-wrap"><i class="fas fa-rocket"></i></div>
-          <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Product Strategy</h3>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">From idea to launch — MVPs, product
-            roadmaps, and technical co-founder advisory drawing on first-hand entrepreneurial experience.</p>
-        </div>
-
-        <div class="card" style="padding:32px;">
-          <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
-          <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Code Review &amp; Audits</h3>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Deep-dive code reviews, security
-            audits, performance profiling and refactoring recommendations to get your codebase to production quality.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="glow-divider"></div>
-
-  <!-- ═══ ABOUT ═══ -->
-  <section id="about" style="padding:100px 24px;">
-    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
-      <div>
-        <p class="section-label">About Me</p>
-        <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 24px;">Architect.
-          Consultant.<br>Entrepreneur.</h2>
-        <p style="color:#94a3b8;line-height:1.8;margin-bottom:20px;font-size:0.97rem;">
-          With 16 years in the software industry, I've worn every hat — developer, tech lead, architect, and founder.
-          I've shipped apps downloaded by millions, designed backend systems processing thousands of transactions per
-          second, and helped businesses re-engineer legacy platforms.
-        </p>
-        <p style="color:#94a3b8;line-height:1.8;margin-bottom:36px;font-size:0.97rem;">
-          My philosophy: <strong style="color:var(--text);">great software is simple software</strong> — easy to reason
-          about, easy to evolve. I bring that mindset to every engagement, whether it's a one-week audit or a multi-year
-          architecture partnership.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;">
-          <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
-            <i class="fas fa-check-circle" style="color:var(--accent);"></i>
-            Clean Architecture
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
-            <i class="fas fa-check-circle" style="color:var(--accent);"></i>
-            SOLID Principles
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
-            <i class="fas fa-check-circle" style="color:var(--accent);"></i>
-            Domain-Driven Design
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
-            <i class="fas fa-check-circle" style="color:var(--accent);"></i>
-            Agile / Scrum
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
-            <i class="fas fa-check-circle" style="color:var(--accent);"></i>
-            Open Source Contributor
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
-            <i class="fas fa-check-circle" style="color:var(--accent);"></i>
-            Technical Mentorship
-          </div>
-        </div>
-      </div>
-      <!-- Stats -->
-      <div class="stats-grid">
-        <div class="card" style="padding:28px;">
-          <div class="stat-highlight">16<span style="font-size:1.8rem;color:var(--accent);">+</span></div>
-          <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Years of
-            Professional Experience</div>
-        </div>
-        <div class="card" style="padding:28px;">
-          <div class="stat-highlight">5</div>
-          <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Platforms
-            Mastered</div>
-        </div>
-        <div class="card" style="padding:28px;">
-          <div class="stat-highlight">∞</div>
-          <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Cups of
-            Coffee</div>
-        </div>
-        <div class="card" style="padding:28px;">
-          <div class="stat-highlight">3</div>
-          <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Roles:
-            Architect · Consultant · Founder</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="glow-divider"></div>
-
-  <!-- ═══ EXPERIENCE TIMELINE ═══ -->
-  <section id="experience" style="padding:100px 24px;background:var(--surface);">
-    <div style="max-width:800px;margin:0 auto;">
-      <div style="margin-bottom:56px;">
-        <p class="section-label">Career Journey</p>
-        <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Experience Timeline</h2>
-        <p style="color:var(--muted);line-height:1.7;">Milestones across a decade and a half of building, shipping, and
-          leading.</p>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:40px;">
-
-        <div class="timeline-item">
-          <div
-            style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
-            <div>
-              <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Software Architect &amp; IT Consultant</h3>
-              <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Self-employed / Freelance
-              </p>
-            </div>
-            <span class="badge-chip">2018 – Present</span>
-          </div>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Architecting full-stack solutions for
-            clients globally. Leading technical strategy for startups and mid-size companies in fintech, edtech, and
-            healthcare verticals.</p>
-        </div>
-
-        <div class="timeline-item">
-          <div
-            style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
-            <div>
-              <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Entrepreneur &amp; Co-Founder</h3>
-              <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Tech Startup</p>
-            </div>
-            <span class="badge-chip">2016 – Present</span>
-          </div>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Founded and led engineering for
-            multiple software ventures. Built and scaled mobile and web products from zero to launch, managing
-            cross-functional engineering teams.</p>
-        </div>
-
-        <div class="timeline-item">
-          <div
-            style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
-            <div>
-              <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Senior Software Engineer → Tech Lead</h3>
-              <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Software Companies</p>
-            </div>
-            <span class="badge-chip">2012 – 2018</span>
-          </div>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Led Android and backend teams
-            delivering consumer applications. Introduced architectural patterns (MVVM, Clean Architecture) and mentored
-            junior engineers.</p>
-        </div>
-
-        <div class="timeline-item">
-          <div
-            style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
-            <div>
-              <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Software Developer</h3>
-              <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Early Career</p>
-            </div>
-            <span class="badge-chip">2008 – 2012</span>
-          </div>
-          <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Started with PHP &amp; Java web
-            backends, rapidly progressed to mobile as Android emerged. Built foundational expertise in software design
-            patterns and database systems.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="glow-divider"></div>
-
-  <!-- ═══ CONTACT ═══ -->
-  <section id="contact" style="padding:100px 24px;">
-    <div style="max-width:700px;margin:0 auto;text-align:center;">
-      <p class="section-label">Let's Work Together</p>
-      <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Get In Touch</h2>
-      <p style="color:var(--muted);line-height:1.7;margin-bottom:48px;">Have a project, need an architectural review, or
-        want to explore a consulting engagement? I'd love to hear from you.</p>
-
-      <div class="card" style="padding:40px;text-align:left;">
-        <form onsubmit="handleContactSubmit(event)">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-            <div>
-              <label style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Full
-                Name</label>
-              <input type="text" class="form-input" placeholder="Your name" required>
-            </div>
-            <div>
-              <label
-                style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Email</label>
-              <input type="email" class="form-input" placeholder="you@company.com" required>
-            </div>
-          </div>
-          <div style="margin-bottom:16px;">
-            <label
-              style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Subject</label>
-            <input type="text" class="form-input" placeholder="Project inquiry / Consulting / Audit">
-          </div>
-          <div style="margin-bottom:24px;">
-            <label
-              style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Message</label>
-            <textarea class="form-input" rows="5" placeholder="Tell me about your project or what you need help with..."
-              required style="resize:vertical;"></textarea>
-          </div>
-          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
-            <i class="fa fa-paper-plane"></i> Send Message
-          </button>
-        </form>
-      </div>
-
-      <!-- Social / contact chips -->
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:36px;">
-        <a href="mailto:kiranksurersh@gmail.com" class="btn-outline"
-          style="padding:10px 20px;font-size:0.85rem;text-decoration:none;">
-          <i class="fa fa-envelope"></i> kiranksurersh@gmail.com
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="nav-glass" style="position:relative;">
+      <div
+        style="max-width:1200px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;">
+        <a href="#hero" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+          <span
+            style="width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.9rem;color:#071310;">KS</span>
+          <span style="font-weight:700;font-size:1rem;color:var(--text);">kirans.net</span>
         </a>
+        <!-- Desktop links -->
+        <div class="nav-links nav-links-desktop" style="display:flex;gap:32px;align-items:center;">
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#contact" class="btn-primary" style="padding:9px 20px;font-size:0.82rem;">Hire Me</a>
+        </div>
+        <!-- Hamburger -->
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </div>
-  </section>
+      <!-- Mobile dropdown (appended inside nav for correct stacking) -->
+      <div class="nav-links" id="nav-mobile-menu" style="display:none;">
+        <a href="#skills" class="nav-link" style="color:var(--text);font-size:1rem;">Skills</a>
+        <a href="#services" class="nav-link" style="color:var(--text);font-size:1rem;">Services</a>
+        <a href="#experience" class="nav-link" style="color:var(--text);font-size:1rem;">Experience</a>
+        <a href="#contact" class="btn-primary" style="width:fit-content;">Hire Me</a>
+      </div>
+    </nav>
 
-  <!-- ═══ FOOTER ═══ -->
-  <footer style="padding:32px 24px;text-align:center;">
-    <div style="max-width:1200px;margin:0 auto;">
-      <p style="color:var(--muted);font-size:0.82rem;">
-        &copy; <span id="year"></span> Kiran S &nbsp;·&nbsp; kirans.net &nbsp;·&nbsp;
-        Built with passion &amp; <span class="mono" style="color:var(--accent);">&lt;/&gt;</span>
-      </p>
-    </div>
-  </footer>
+    <!-- ═══ HERO ═══ -->
+    <section id="hero" class="hero-grid"
+      style="min-height:100vh;display:flex;align-items:center;padding:100px 24px 80px;">
+      <div class="hero-inner"
+        style="max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;">
+        <div>
+          <div style="margin-bottom:24px;">
+            <span class="badge-chip pulse">
+              <span style="width:7px;height:7px;background:var(--accent);border-radius:50%;"></span>
+              Available for consulting
+            </span>
+          </div>
+          <p class="mono" style="color:var(--muted);font-size:0.9rem;margin-bottom:8px;">
+            // 16+ years of engineering excellence
+          </p>
+          <h1 style="font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;line-height:1.1;margin:0 0 8px;">
+            <span class="title-gradient">Kiran S</span>
+          </h1>
+          <h2
+            style="font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;color:#94a3b8;margin:0 0 28px;line-height:1.4;">
+            Software Architect &nbsp;·&nbsp; IT Consultant &nbsp;·&nbsp; Entrepreneur
+          </h2>
+          <p style="font-size:1.05rem;color:#94a3b8;line-height:1.8;max-width:560px;margin-bottom:40px;">
+            I design and build scalable, production-grade systems across mobile, backend, and cloud platforms.
+            From startups to enterprises — I architect solutions that last.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;">
+            <a href="#contact" class="btn-primary">
+              <i class="fa fa-paper-plane"></i> Get In Touch
+            </a>
+            <a href="#services" class="btn-outline">
+              <i class="fa fa-layer-group"></i> View Services
+            </a>
+          </div>
+          <!-- Quick tech badges -->
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;">
+            <span class="skill-pill"><span class="dot"></span>Laravel</span>
+            <span class="skill-pill"><span class="dot"></span>Android</span>
+            <span class="skill-pill"><span class="dot"></span>Node.js</span>
+            <span class="skill-pill"><span class="dot"></span>Flutter</span>
+            <span class="skill-pill"><span class="dot"></span>TypeScript</span>
+          </div>
+        </div>
+        <!-- Stats block -->
+        <div class="hero-stats" style="display:grid;grid-template-columns:1fr;gap:20px;min-width:200px;">
+          <div class="card" style="padding:28px 24px;text-align:center;">
+            <div class="stat-highlight">16<span style="color:var(--accent);font-size:2rem;">+</span></div>
+            <div style="color:var(--muted);font-size:0.82rem;margin-top:4px;font-weight:500;">Years Experience</div>
+          </div>
+          <div class="card" style="padding:28px 24px;text-align:center;">
+            <div class="stat-highlight">50<span style="color:var(--accent);font-size:2rem;">+</span></div>
+            <div style="color:var(--muted);font-size:0.82rem;margin-top:4px;font-weight:500;">Projects Delivered</div>
+          </div>
+          <div class="card" style="padding:28px 24px;text-align:center;">
+            <div class="stat-highlight">5</div>
+            <div style="color:var(--muted);font-size:0.82rem;margin-top:4px;font-weight:500;">Core Platforms</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider"></div>
+
+    <!-- ═══ SKILLS ═══ -->
+    <section id="skills" style="padding:100px 24px;">
+      <div style="max-width:1200px;margin:0 auto;">
+        <div style="margin-bottom:56px;">
+          <p class="section-label">Technical Expertise</p>
+          <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Tech Stack &amp; Skills</h2>
+          <p style="color:var(--muted);max-width:500px;line-height:1.7;">Across 16 years I've worked deep and wide —
+            full-stack, mobile-first, cloud-native.</p>
+        </div>
+
+        <!-- Primary skills with proficiency -->
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-bottom:48px;">
+
+          <div class="card" style="padding:28px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fab fa-php" style="color:#8892BF;font-size:1.4rem;"></i>
+                <span style="font-weight:600;">Laravel / PHP</span>
+              </div>
+              <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
+            </div>
+            <div class="progress-bar-bg" style="margin-bottom:12px;">
+              <div class="progress-bar-fill" style="width:96%;"></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">REST APIs</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Eloquent ORM</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Queues</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Microservices</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fab fa-android" style="color:#3DDC84;font-size:1.4rem;"></i>
+                <span style="font-weight:600;">Android (Java &amp; Kotlin)</span>
+              </div>
+              <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
+            </div>
+            <div class="progress-bar-bg" style="margin-bottom:12px;">
+              <div class="progress-bar-fill" style="width:94%;"></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Jetpack Compose</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">MVVM</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Coroutines</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Room / Retrofit</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fab fa-node-js" style="color:#68A063;font-size:1.4rem;"></i>
+                <span style="font-weight:600;">Node.js / TypeScript</span>
+              </div>
+              <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
+            </div>
+            <div class="progress-bar-bg" style="margin-bottom:12px;">
+              <div class="progress-bar-fill" style="width:92%;"></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Express / Fastify</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">NestJS</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">WebSockets</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">GraphQL</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-mobile-alt" style="color:#54C5F8;font-size:1.4rem;"></i>
+                <span style="font-weight:600;">Flutter / Dart</span>
+              </div>
+              <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Advanced</span>
+            </div>
+            <div class="progress-bar-bg" style="margin-bottom:12px;">
+              <div class="progress-bar-fill" style="width:88%;"></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Bloc / Riverpod</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Cross-platform</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">iOS &amp; Android</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Flutter Web</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-cloud" style="color:#6366f1;font-size:1.4rem;"></i>
+                <span style="font-weight:600;">Cloud &amp; DevOps</span>
+              </div>
+              <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Advanced</span>
+            </div>
+            <div class="progress-bar-bg" style="margin-bottom:12px;">
+              <div class="progress-bar-fill" style="width:85%;"></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">AWS / GCP</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Docker</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">CI/CD</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Firebase</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-database" style="color:#f59e0b;font-size:1.4rem;"></i>
+                <span style="font-weight:600;">Databases &amp; Architecture</span>
+              </div>
+              <span style="color:var(--accent);font-size:0.82rem;font-weight:600;" class="mono">Expert</span>
+            </div>
+            <div class="progress-bar-bg" style="margin-bottom:12px;">
+              <div class="progress-bar-fill" style="width:93%;"></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">MySQL / PostgreSQL</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">MongoDB</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Redis</span>
+              <span class="badge-chip" style="font-size:0.72rem;padding:3px 10px;">Microservices</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider"></div>
+
+    <!-- ═══ SERVICES ═══ -->
+    <section id="services" style="padding:100px 24px;background:var(--surface);">
+      <div style="max-width:1200px;margin:0 auto;">
+        <div style="margin-bottom:56px;text-align:center;">
+          <p class="section-label">What I Do</p>
+          <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Services</h2>
+          <p style="color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7;">End-to-end expertise from
+            architectural design to production deployment.</p>
+        </div>
+        <div class="services-grid">
+
+          <div class="card" style="padding:32px;">
+            <div class="icon-wrap"><i class="fas fa-sitemap"></i></div>
+            <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">System Architecture</h3>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Design of scalable microservices,
+              event-driven systems, and enterprise-grade backend architectures tailored to your business domain.</p>
+          </div>
+
+          <div class="card" style="padding:32px;">
+            <div class="icon-wrap"><i class="fab fa-android"></i></div>
+            <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Mobile App Development</h3>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Native Android (Java/Kotlin) and
+              cross-platform Flutter apps — performant, beautiful, and production-ready for millions of users.</p>
+          </div>
+
+          <div class="card" style="padding:32px;">
+            <div class="icon-wrap"><i class="fas fa-server"></i></div>
+            <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Backend &amp; API Development</h3>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">RESTful and GraphQL APIs built with
+              Laravel and Node.js/TypeScript. Secure, high-performance, and built with developer experience in mind.</p>
+          </div>
+
+          <div class="card" style="padding:32px;">
+            <div class="icon-wrap"><i class="fas fa-lightbulb"></i></div>
+            <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">IT Consulting</h3>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Strategic technology audits, team
+              structure guidance, tech stack selection, and roadmap planning for growing startups and enterprises.</p>
+          </div>
+
+          <div class="card" style="padding:32px;">
+            <div class="icon-wrap"><i class="fas fa-rocket"></i></div>
+            <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Product Strategy</h3>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">From idea to launch — MVPs, product
+              roadmaps, and technical co-founder advisory drawing on first-hand entrepreneurial experience.</p>
+          </div>
+
+          <div class="card" style="padding:32px;">
+            <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
+            <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 10px;">Code Review &amp; Audits</h3>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Deep-dive code reviews, security
+              audits, performance profiling and refactoring recommendations to get your codebase to production quality.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider"></div>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section id="about" style="padding:100px 24px;">
+      <div
+        style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+        <div>
+          <p class="section-label">About Me</p>
+          <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 24px;">Architect.
+            Consultant.<br>Entrepreneur.</h2>
+          <p style="color:#94a3b8;line-height:1.8;margin-bottom:20px;font-size:0.97rem;">
+            With 16 years in the software industry, I've worn every hat — developer, tech lead, architect, and founder.
+            I've shipped apps downloaded by millions, designed backend systems processing thousands of transactions per
+            second, and helped businesses re-engineer legacy platforms.
+          </p>
+          <p style="color:#94a3b8;line-height:1.8;margin-bottom:36px;font-size:0.97rem;">
+            My philosophy: <strong style="color:var(--text);">great software is simple software</strong> — easy to
+            reason
+            about, easy to evolve. I bring that mindset to every engagement, whether it's a one-week audit or a
+            multi-year
+            architecture partnership.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;">
+            <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+              Clean Architecture
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+              SOLID Principles
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+              Domain-Driven Design
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+              Agile / Scrum
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+              Open Source Contributor
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:0.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+              Technical Mentorship
+            </div>
+          </div>
+        </div>
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="card" style="padding:28px;">
+            <div class="stat-highlight">16<span style="font-size:1.8rem;color:var(--accent);">+</span></div>
+            <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Years of
+              Professional Experience</div>
+          </div>
+          <div class="card" style="padding:28px;">
+            <div class="stat-highlight">5</div>
+            <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Platforms
+              Mastered</div>
+          </div>
+          <div class="card" style="padding:28px;">
+            <div class="stat-highlight">∞</div>
+            <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Cups of
+              Coffee</div>
+          </div>
+          <div class="card" style="padding:28px;">
+            <div class="stat-highlight">3</div>
+            <div style="color:var(--muted);font-size:0.82rem;margin-top:6px;font-weight:500;line-height:1.4;">Roles:
+              Architect · Consultant · Founder</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider"></div>
+
+    <!-- ═══ EXPERIENCE TIMELINE ═══ -->
+    <section id="experience" style="padding:100px 24px;background:var(--surface);">
+      <div style="max-width:800px;margin:0 auto;">
+        <div style="margin-bottom:56px;">
+          <p class="section-label">Career Journey</p>
+          <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Experience Timeline</h2>
+          <p style="color:var(--muted);line-height:1.7;">Milestones across a decade and a half of building, shipping,
+            and
+            leading.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:40px;">
+
+          <div class="timeline-item">
+            <div
+              style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
+              <div>
+                <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Software Architect &amp; IT Consultant</h3>
+                <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Self-employed / Freelance
+                </p>
+              </div>
+              <span class="badge-chip">2018 – Present</span>
+            </div>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Architecting full-stack solutions
+              for
+              clients globally. Leading technical strategy for startups and mid-size companies in fintech, edtech, and
+              healthcare verticals.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div
+              style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
+              <div>
+                <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Entrepreneur &amp; Co-Founder</h3>
+                <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Tech Startup</p>
+              </div>
+              <span class="badge-chip">2016 – Present</span>
+            </div>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Founded and led engineering for
+              multiple software ventures. Built and scaled mobile and web products from zero to launch, managing
+              cross-functional engineering teams.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div
+              style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
+              <div>
+                <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Senior Software Engineer → Tech Lead</h3>
+                <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Software Companies</p>
+              </div>
+              <span class="badge-chip">2012 – 2018</span>
+            </div>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Led Android and backend teams
+              delivering consumer applications. Introduced architectural patterns (MVVM, Clean Architecture) and
+              mentored
+              junior engineers.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div
+              style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;">
+              <div>
+                <h3 style="font-size:1.05rem;font-weight:700;margin:0;">Software Developer</h3>
+                <p style="color:var(--accent);font-size:0.85rem;margin:4px 0 0;" class="mono">Early Career</p>
+              </div>
+              <span class="badge-chip">2008 – 2012</span>
+            </div>
+            <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin:0;">Started with PHP &amp; Java web
+              backends, rapidly progressed to mobile as Android emerged. Built foundational expertise in software design
+              patterns and database systems.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider"></div>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section id="contact" style="padding:100px 24px;">
+      <div style="max-width:700px;margin:0 auto;text-align:center;">
+        <p class="section-label">Let's Work Together</p>
+        <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin:8px 0 16px;">Get In Touch</h2>
+        <p style="color:var(--muted);line-height:1.7;margin-bottom:48px;">Have a project, need an architectural review,
+          or
+          want to explore a consulting engagement? I'd love to hear from you.</p>
+
+        <div class="card" style="padding:40px;text-align:left;">
+          <form onsubmit="handleContactSubmit(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+              <div>
+                <label
+                  style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Full
+                  Name</label>
+                <input type="text" class="form-input" placeholder="Your name" required>
+              </div>
+              <div>
+                <label
+                  style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Email</label>
+                <input type="email" class="form-input" placeholder="you@company.com" required>
+              </div>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label
+                style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Subject</label>
+              <input type="text" class="form-input" placeholder="Project inquiry / Consulting / Audit">
+            </div>
+            <div style="margin-bottom:24px;">
+              <label
+                style="display:block;font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:500;">Message</label>
+              <textarea class="form-input" rows="5"
+                placeholder="Tell me about your project or what you need help with..." required
+                style="resize:vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+              <i class="fa fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Social / contact chips -->
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:36px;">
+          <a href="mailto:kiranksurersh@gmail.com" class="btn-outline"
+            style="padding:10px 20px;font-size:0.85rem;text-decoration:none;">
+            <i class="fa fa-envelope"></i> kiranksurersh@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer style="padding:32px 24px;text-align:center;">
+      <div style="max-width:1200px;margin:0 auto;">
+        <p style="color:var(--muted);font-size:0.82rem;">
+          &copy; <span id="year"></span> Kiran S &nbsp;·&nbsp; kirans.net &nbsp;·&nbsp;
+          Built with passion &amp; <span class="mono" style="color:var(--accent);">&lt;/&gt;</span>
+        </p>
+      </div>
+    </footer>
 
   </div><!-- /#page-architect -->
 
@@ -1189,6 +1265,23 @@
       section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(section);
     });
+
+    // Hamburger menu toggle
+    var hamburger = document.getElementById('nav-hamburger');
+    var mobileMenu = document.getElementById('nav-mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+      });
+      // Close menu when a link is clicked
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+        });
+      });
+    }
 
     // Active nav highlight on scroll
     var sections = document.querySelectorAll('section[id]');
